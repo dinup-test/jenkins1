@@ -1,5 +1,5 @@
 pipeline {
-   agent(JDK-8)
+   agent { label 'JDK-17' }
    options {
     timeout(time: 30, unit: 'MINUTES')
    }
