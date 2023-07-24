@@ -6,9 +6,7 @@ pipeline {
    triggers {
     pollSCM'(* * * * *)'
    }
-   parameters {
-    string(name:'PERSON', defaultvalue 'Mr jenkins',  description 'Hi, this is test run')
-   }
+  
 
    tools {
        maven 'apache-maven-3.9.3'
