@@ -21,7 +21,7 @@ pipeline {
       stage('git')
          steps {
             git branch: Master
-                url: https://github.com/wakaleo/game-of-life.git
+                url: https://github.com/dinup-test/jenkins1.git
          }
         
       stage('build')
