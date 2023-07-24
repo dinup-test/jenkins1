@@ -20,7 +20,7 @@ pipeline {
    stages {
       stage('git')
          steps {
-            git branch: Main 
+            git branch: Master
                 url: https://github.com/wakaleo/game-of-life.git
          }
         
@@ -34,21 +34,7 @@ pipeline {
             archiveArtifacts artifacts 'target/*.jar'
             junit testResults '**/target/surefire-reports/TEST-*.xml'
         }
-
-        }
-
-
-
-
-   
-
-
-git branch: main 
-            url: https://github.com/wakaleo/game-of-life.git
-        }
-
-        stage('build')
-           sh script 'mav clean install'
-
-
+   }
+}
+    
 
