@@ -13,11 +13,12 @@ pipeline {
        jdk 'JDK_8'
 
    }
-   
    parameters {
-      choice(name: 'GOAL', CHOICES: ['clean', 'clean install', 'clean package'], discription: 'choices for Goal')
-   }
+      choice(name: 'GOAL', choices: ['package', 'install' 'clean'], discription: 'this for choices')
 
+   }
+   
+   
 
    stages {
       stage('git') {
@@ -29,7 +30,7 @@ pipeline {
         
       stage('build') {
          steps {
-            sh script: 'mvn ${param.GOAL}'
+            sh "mvn ${params.GOAL}"
          }
       }
 
@@ -39,6 +40,21 @@ pipeline {
             junit testResults: '**/target/surefire-reports/TEST-*.xml'
         }
       }
+   }
+
+   post {
+      success {
+         mail subject : "build status"
+              body : "you build is efective"
+      }
+
+      failure {
+         mail subject : "build status"
+              body : "you build is defective"
+      }
+
+
+
    }
 }
     
