@@ -17,7 +17,7 @@ pipeline {
 
    stages {
       stage('git')
-         steps {
+         step {
             git branch: Master
                 url: https://github.com/dinup-test/jenkins1.git
          }
