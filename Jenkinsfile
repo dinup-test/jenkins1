@@ -18,8 +18,8 @@ pipeline {
    stages {
       stage('git') {
          step {
-            git branch: Master
-                url: https://github.com/dinup-test/jenkins1.git
+            git branch: 'master'
+                url: 'https://github.com/dinup-test/jenkins1.git'
          }
       }
         
