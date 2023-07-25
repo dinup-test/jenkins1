@@ -13,6 +13,10 @@ pipeline {
        jdk 'JDK_8'
 
    }
+   
+   parameters {
+      choice(name: 'GOAL', CHOICES: ['clean', 'clean install', 'clean package'], discription: 'choices for Goal')
+   }
 
 
    stages {
@@ -25,7 +29,7 @@ pipeline {
         
       stage('build') {
          steps {
-            sh script: 'mvn clean install'
+            sh script: 'mvn ${param.GOAL}'
          }
       }
 
