@@ -1,5 +1,5 @@
 pipeline {
-   agent { label 'JDK-17' }
+   agent { label 'JDK-8' }
    options {
     timeout(time: 30, unit: 'MINUTES')
    }
@@ -9,8 +9,8 @@ pipeline {
   
 
    tools {
-       maven 'apache-maven-3.9.3'
-       jdk 'jdk_8'
+       maven 'MAVEN_LATEST'
+       jdk 'JDK_8'
 
    }
 
