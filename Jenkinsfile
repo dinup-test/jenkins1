@@ -13,12 +13,7 @@ pipeline {
        maven 'MAVEN_LATEST'
        jdk 'JDK_8'
 
-   }
-   parameters {
-      choice(name: 'GOAL', choices: ['package', 'install' 'clean'], discription: 'this for choices')
-
-   }
-   
+  
    
 
    stages {
