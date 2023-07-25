@@ -16,22 +16,25 @@ pipeline {
 
 
    stages {
-      stage('git')
+      stage('git') {
          step {
             git branch: Master
                 url: https://github.com/dinup-test/jenkins1.git
          }
+      }
         
-      stage('build')
+      stage('build') {
          step {
             sh script 'mvn clean install'
          }
+      }
 
-      stage('reporting')
+      stage('reporting') {
         step {
             archiveArtifacts artifacts 'target/*.jar'
             junit testResults '**/target/surefire-reports/TEST-*.xml'
         }
+      }
    }
 }
     
