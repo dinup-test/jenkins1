@@ -3,7 +3,10 @@ pipeline {
    options {
     timeout(time: 30, unit: 'MINUTES')
    }
-  
+  triggers { pollSCM ('H/30 * * * *') }
+    parameters {
+        choice(name: 'MAVEN_GOAL', choices: ['package', 'install', 'clean'], description: 'Maven Goal')
+    }
   
 
    tools {
