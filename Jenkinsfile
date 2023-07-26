@@ -41,8 +41,7 @@ pipeline {
 
    post {
 
-      always {
-         mail echo 'build is completed'
+      
       success {
          mail subject : "build status"
               body : "you build is efective"
@@ -58,5 +57,4 @@ pipeline {
 }
     
 
-}
 }
