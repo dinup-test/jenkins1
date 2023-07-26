@@ -30,8 +30,8 @@ pipeline {
 
       stage('reporting') {
         steps {
-            archiveArtifacts artifacts: '**/target/gameoflife.war'
-            junit testResults: '**/target/surefire-reports/TEST-*.xml'
+            archiveArtifacts artifacts: '/target/*.war',
+            junit testResults: '/target/surefire-reports/TEST-*.xml'
         }
       }
    }
