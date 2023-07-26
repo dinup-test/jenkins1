@@ -11,7 +11,7 @@ pipeline {
        maven 'MAVEN_LATEST'
        jdk 'JDK_8'
 
-  
+   }
    
 
    stages {
@@ -40,4 +40,3 @@ pipeline {
 }
     
 
-}
