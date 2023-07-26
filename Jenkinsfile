@@ -43,15 +43,11 @@ pipeline {
 
       
       success {
-         mail subject: "${JOB_NAME} build status",
-              body : "you build is efective \n ${BUILD_URL}",
-              to: "qt@all.com"
+         slackSend "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
       }
 
       failure {
-         mail subject: "${JOB_NAME} build status",
-              body : "you build is defective \n ${BUILD_URL}",
-              to: "qt@all.com"
+        slackSend "Build failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
       }
 
 }
