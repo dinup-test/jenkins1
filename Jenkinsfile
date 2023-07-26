@@ -43,14 +43,14 @@ pipeline {
 
       
       success {
-         mail subject : "build status"
-              body : "you build is efective"
+         mail subject : "build status",
+              body : "you build is efective",
               to: "qt@all.com"
       }
 
       failure {
-         mail subject : "build status"
-              body : "you build is defective"
+         mail subject : "build status",
+              body : "you build is defective",
               to: "qt@all.com"
       }
 
