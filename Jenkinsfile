@@ -43,11 +43,11 @@ pipeline {
 
       
       success {
-         slackSend "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+         slackSend channel: "devops", message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
       }
 
       failure {
-        slackSend "Build failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+        slackSend channel: "devops", message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
       }
 
 }
