@@ -24,17 +24,50 @@ pipeline {
                 url: 'https://github.com/dinup-test/jenkins1.git'
          }
       }
-        
-      stage('build') {
-         steps {
-            sh script: "mvn ${params.MAVEN_GOAL}"
-         }
-      }
+      stage ('Artifactory configuration') {
+            steps {
+                
+                rtMavenDeployer (
+                    id: "GOL_DEPLOYER",
+                    serverId: "JFROG_TOKEN",
+                    releaseRepo: 'devops-snapshot-local',
+                    snapshotRepo: 'devops-snapshot-local'
+                )
 
+               //(this for downloading things from central repo or internet) rtMavenResolver (
+                  //  id: "MAVEN_RESOLVER",
+                  //  serverId: "ARTIFACTORY_SERVER",
+                  //  releaseRepo: ARTIFACTORY_VIRTUAL_RELEASE_REPO,
+                  //  snapshotRepo: ARTIFACTORY_VIRTUAL_SNAPSHOT_REPO
+                
+            }
+        }
+
+        stage ('Exec Maven') {
+            steps {
+                rtMavenRun (
+                    tool: MAVEN_LATEST, // Tool name from Jenkins configuration
+                    pom: 'pom.xml',
+                    goals: 'clean install',
+                    deployerId: "GOL_DEPLOYER",
+                    buildName: "${JOB_NAME}",
+                    buildNumber: "${BUILD_ID}"
+                    
+                )
+            }
+        }
+
+        stage ('Publish build info') {
+            steps {
+                rtPublishBuildInfo (
+                    serverId: "JFROG_TOKEN"
+                )
+            }
+        }
       stage('reporting') {
         steps {       
              junit testResults: '**/surefire-reports/TEST-*.xml'
-             archiveArtifacts artifacts: '**/target/gameoflife.war'
+             
         }
       }
    }
