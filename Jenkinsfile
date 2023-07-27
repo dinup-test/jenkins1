@@ -8,7 +8,7 @@ pipeline {
   
 
    tools {
-       maven 'MAVEN_LATEST'
+       
        jdk 'JDK_8'
 
    }
@@ -27,9 +27,9 @@ pipeline {
                 
                 rtMavenDeployer (
                     id: "GOL_DEPLOYER",
-                    serverId: "JFROG_TOKEN",
-                    releaseRepo: 'devops-snapshot-local',
-                    snapshotRepo: 'devops-snapshot-local'
+                    serverId: "MY_FREE_JFROG",
+                    releaseRepo: 'devops-app-libs-snapshot-local',
+                    snapshotRepo: 'devops-app-libs-snapshot-local'
                 )
 
                //(this for downloading things from central repo or internet) rtMavenResolver (
@@ -44,7 +44,7 @@ pipeline {
         stage('Exec Maven') {
             steps {
                 rtMavenRun (
-                    tool: MAVEN_LATEST, // Tool name from Jenkins configuration
+                    tool: 'MAVEN_LATEST', 
                     pom: 'pom.xml',
                     goals: 'clean install',
                     deployerId: "GOL_DEPLOYER",
@@ -58,7 +58,7 @@ pipeline {
         stage('Publish build info') {
             steps {
                 rtPublishBuildInfo (
-                    serverId: "JFROG_TOKEN"
+                    serverId: "MY_FREE_JFROG"
                 )
             }
         }
