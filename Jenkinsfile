@@ -12,9 +12,7 @@ pipeline {
        jdk 'JDK_8'
 
    }
-   parameters {
-        choice(name: 'MAVEN_GOAL', choices: ['package', 'clean package', 'install', 'clean install'], description: 'Maven Goal')
-    }
+   
    
 
    stages {
@@ -24,7 +22,7 @@ pipeline {
                 url: 'https://github.com/dinup-test/jenkins1.git'
          }
       }
-      stage ('Artifactory configuration') {
+      stage('Artifactory configuration') {
             steps {
                 
                 rtMavenDeployer (
@@ -43,12 +41,12 @@ pipeline {
             }
         }
 
-        stage ('Exec Maven') {
+        stage('Exec Maven') {
             steps {
                 rtMavenRun (
                     tool: MAVEN_LATEST, // Tool name from Jenkins configuration
                     pom: 'pom.xml',
-                    
+                    goals: 'clean install',
                     deployerId: "GOL_DEPLOYER",
                     buildName: "${JOB_NAME}",
                     buildNumber: "${BUILD_ID}"
@@ -57,7 +55,7 @@ pipeline {
             }
         }
 
-        stage ('Publish build info') {
+        stage('Publish build info') {
             steps {
                 rtPublishBuildInfo (
                     serverId: "JFROG_TOKEN"
