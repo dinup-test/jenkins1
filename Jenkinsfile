@@ -43,18 +43,20 @@ pipeline {
 
       
       success {
-          mail: subject  'Build success'
-               body 'Buils is effective'
-               to 'all@all.com'
+         mail subject: "${JOB_NAME} build status",
+              body : "you build is efective \n ${BUILD_URL}",
+              to: "qt@all.com"
       }
 
-      failure { 
-         mail: subject 'Build success'
-               body 'Buils is dffective'
-               to 'all@all.com'
+      failure {
+         mail subject: "${JOB_NAME} build status",
+              body : "you build is defective \n ${BUILD_URL}",
+              to: "qt@all.com"
       }
+    
 
 }
+
     
 
 }
