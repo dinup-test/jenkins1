@@ -43,11 +43,15 @@ pipeline {
 
       
       success {
-         slackSend channel: "devops", message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+          mail subject : "Build success"
+               body: "Buils is effective"
+               to: "all@all.com"
       }
 
-      failure {
-        slackSend channel: "devops", message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+      failure { 
+         mail subject : "Build success"
+               body: "Buils is dffective"
+               to: "all@all.com"
       }
 
 }
