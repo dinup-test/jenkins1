@@ -43,15 +43,15 @@ pipeline {
 
       
       success {
-          mail subject : 'Build success'
-               body: 'Buils is effective'
-               to: 'all@all.com'
+          mail: subject  'Build success'
+               body 'Buils is effective'
+               to 'all@all.com'
       }
 
       failure { 
-         mail subject : 'Build success'
-               body: 'Buils is dffective'
-               to: 'all@all.com'
+         mail: subject 'Build success'
+               body 'Buils is dffective'
+               to 'all@all.com'
       }
 
 }
