@@ -48,7 +48,7 @@ pipeline {
                 rtMavenRun (
                     tool: MAVEN_LATEST, // Tool name from Jenkins configuration
                     pom: 'pom.xml',
-                    goals: 'clean install',
+                    
                     deployerId: "GOL_DEPLOYER",
                     buildName: "${JOB_NAME}",
                     buildNumber: "${BUILD_ID}"
