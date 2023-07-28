@@ -8,7 +8,7 @@ pipeline {
   
 
    tools {
-       maven 'MAVEN_LATEST'
+       maven 'MAVEN_DEFAULT'
        jdk 'JDK_8'
 
    }
